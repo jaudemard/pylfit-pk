@@ -12,7 +12,7 @@ from pkdo import add_noise_to_dataset, add_noise_to_state, partial_knowledge, sp
 
 # from scripts.generators import 
 
-ACCURACY_THRESHOLD = 0.95
+specificity_THRESHOLD = 0.95
 
 PKN_COVERAGE = 0.80
 
@@ -48,7 +48,7 @@ def test_rules_on_noisy_dataset(rules, dataset, noise_list):
         else:
             datasets.append(add_noise_to_dataset(_dataset, noise))
 
-    results = {"noise": [], "accuracy": [], "rule_size": [], "rule": []}
+    results = {"noise": [], "specificity": [], "rule_size": [], "rule": []}
 
     for i, dataset_i in enumerate(datasets):
         for rule in rules:
@@ -56,8 +56,8 @@ def test_rules_on_noisy_dataset(rules, dataset, noise_list):
             negatives = dataset_i.negatives(rule.head[0], rule.head[1])
 
             results["noise"].append(noise_list[i])
-            results["accuracy"].append(
-                PKDO._accuracy(rule, positives=positives, negatives=negatives)
+            results["specificity"].append(
+                PKDO._specificity(rule, positives=positives, negatives=negatives)
             )
             results["rule_size"].append(len(rule.body))
             results["rule"].append(rule)
@@ -129,7 +129,7 @@ def main() -> None:
                 PKDO.fit(
                     n_d,
                     cropped_knowledge,
-                    ACCURACY_THRESHOLD,
+                    specificity_THRESHOLD,
                     learn_all=True,
                     # pareto_limit=5,
                     verbose=False,
