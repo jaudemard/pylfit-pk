@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pkdo"
+version = "0.1.0"
+readme = "README.md"
+requires-python = ">=3.10"
+description = "Prior Knowledge and noisy Data Optimal program inference"
+
+authors = [{name = "jaudemard", email = "juliette.audemard@ec-nantes.fr"}]
+
+
+dependencies = [
+    "numpy>=1.24.0",
+    "pylfit>=1.0.0a1"
+]
