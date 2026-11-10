@@ -23,7 +23,7 @@ class PKDO(Algorithm):
         pareto_limit: int = None,
         min_support: int = None,
         verbose: bool = False,
-    ) -> RuleSetModel:
+    ) -> set[Rule]:
         """
         Args:
             dataset: pylfit.datasets.DiscreteStateTransitionsDataset
